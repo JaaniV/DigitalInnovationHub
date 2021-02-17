@@ -16,17 +16,22 @@ library(readxl)
 
 ```{r get-data}
 raw.data <- read_excel("LAB-ammattikorkeakoulu - Digital Innovation HUB 2020_data.xlsx")
+
+##Poistetaan avoimet vastaukset
 data <- select(raw.data, !(starts_with("13") | 
                              starts_with("12") | 
                               starts_with("10") |
                                 ends_with("teksti") |
                                   ends_with("perustelut?")))
 
+##Tehdään muuttujien nimistä helpommin hanskattavat
 uudetasarakkeet <- c("MIKRO","HLÖ","LV","PÄÄTOIMIALA","SIVUTOIMIALA","KUNTA","SEUTUKUNTA","MAAKUNTA","ASEMA","HLÖMÄÄRÄ","PERUSTETTU","KASVUHALU","KÄYT_NETTIS","KÄYT_SOME","KÄYT_VERKKOKAUPPA","KÄYT_VIDEONEUV","KÄYT_PILVI","KÄYT_KALENTERI","KÄYT_VERKKO-OSTO","KÄYT_AI","KÄYT_BIG-DATA","KÄYT_IOT","KÄYT_TALHA","KÄYT_CRM","TÄRK_MARK","TÄRK_ASKO","TÄRK_TTURVA","TÄRK_PAPMAT","TÄRK_AI","TÄRK_PILVI","TÄRK_MYYNTIPR","TÄRK_SISJÄRJ","OSAA_MARK","OSAA_ASKO","OSAA_TTURVA","OSAA_PAPMAT","OSAA_AI","OSAA_PILVI","OSAA_MYYNTIPR","OSAA_SISJÄRJ","HYÖTY_AJANSÄÄSTÖ","HYÖTY_MATKAKULU","HYÖTY_ASTARPEET","HYÖTY_OPTOIMINTA","HYÖTY_ANSAINTAMALLI","HYÖTY_VERKOSTO","TOT_AJANSÄÄSTÖ","TOT_MATKAKULU","TOT_ASTARPEET","TOT_OPTOIMINTA","TOT_ANSAINTAMALLI","TOT_VERKOSTO","DIGIVAHVISTUS","DIGIESTE","KOR_NETTI","KOR_SOME","KOR_VERKKOKAUPPA","KOR_VIDEO","KOR_PILVI","KOR_KALENTERI","KOR_AI","KOR_BIG-DATA","KOR_IOT")
-
 
 colnames(data) <- uudetasarakkeet
 data
+
+library(knitr)
+kable(data)
 
 ##data
 ##uudetasarakkeet
